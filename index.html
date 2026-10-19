@@ -63,7 +63,7 @@ for(let i=FIRST;i<N;i++){const d=new Date(S0);d.setDate(d.getDate()+i);const o=d
 $("day").value=FIRST+122;
 function draw(id,se){const W=640,H=230,l=46,rt=10,t=10,bt=28,all=se.flatMap(s=>s[0]),mn=Math.min(...all),mx=Math.max(...all),pd=(mx-mn)*.08,y0=mn-pd,y1=mx+pd,X=h=>l+(W-l-rt)*h/23,Y=v=>H-bt-(H-bt-t)*(v-y0)/(y1-y0);let s="";for(let k=0;k<=4;k++){const v=y0+(y1-y0)*k/4,y=Y(v);s+=`<line class="ax" x1="${l}" x2="${W-rt}" y1="${y}" y2="${y}"/><text class="t" x="${l-4}" y="${y+3}" text-anchor="end">${f1(v)}</text>`}
 for(let h=0;h<24;h+=3)s+=`<text class="t" x="${X(h)}" y="${H-10}" text-anchor="middle">${String(h).padStart(2,"0")}:00</text>`;
-$(id).setAttribute("viewBox","0 0 640 "+H);$(id).innerHTML=s+se.map(([a,c,w])=>`<polyline class="${c}" fill="none" stroke-width="${w}" points="${a.map((v,h)=>X(h)+","+Y(v)).join(" ")}"/>`).join("")+`<text class="t" x="4" y="10">MWh</text>`}
+$(id).setAttribute("viewBox","0 0 640 "+H);$(id).innerHTML=s+se.map(([a,c,w])=>`<polyline class="${c}" fill="none" stroke-width="${w}" points="${a.map((v,h)=>X(h)+","+Y(v)).join(" ")}"/>`).join("")+`<text class="t" x="${l+4}" y="7">MWh</text>`}
 function bars(r){const W=640,H=110,l=46,bw=(W-l-10)/24,mx=Math.max(1,...r.dn.map(Math.abs)),z=H/2-6;let s=`<line class="ax" x1="${l}" x2="${W-10}" y1="${z}" y2="${z}"/>`;
 r.dn.forEach((v,h)=>{const ht=Math.abs(v)/mx*(z-8),x=l+h*bw+2;s+=`<rect x="${x}" width="${bw-4}" y="${v>=0?z-ht:z}" height="${ht}" fill="${v>=0?'var(--c3)':'var(--c2)'}"/>`;if(h%3==0)s+=`<text class="t" x="${x+bw/2}" y="${H-2}" text-anchor="middle">${String(h).padStart(2,"0")}</text>`});
 $("bar").innerHTML=s+`<text class="t" x="4" y="14">+ ekle</text><text class="t" x="4" y="${H-14}">- azalt</text>`;
